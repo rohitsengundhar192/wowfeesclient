@@ -1,0 +1,202 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="font-small-in-size">Schedule New - Discount</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon (click)="onNoClick()">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="p-2">
+  <!--simple text-->
+  <!--Content-->
+  <form [formGroup]="firstFormGroup">
+    <div class="space-y-2 mt-[5px]">
+      <!--Category Input type-->
+      <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+        <div>
+          <span class="normal-heading-12-bold">Assign / Edit</span>
+          <span class="red-heading-12 ml-1">Common Fee</span>
+          <span class="normal-heading-12-bold ml-1">for:</span>
+        </div>
+        <div class="lt-xs:mt-3">
+          <mat-form-field
+            appearance="outline"
+            class="w-[95%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading gt-xs:w-[150%]"
+          >
+            <mat-label class="">Select Student</mat-label>
+            <mat-select
+              appearance="outline"
+              required
+              formControlName="selStudent"
+            >
+              <mat-option
+                *ngFor="let dates of passDataSelectStudent"
+                [value]="dates"
+                (click)="selectStudent(dates)"
+              >
+                <span class="primary-heading-12">
+                  {{ dates.first_name }}{{ dates.last_name }}</span
+                >
+                <span class="normal-heading-12 ml-1">
+                  - {{ dates.c_name }}</span
+                >
+              </mat-option>
+            </mat-select>
+            <mat-error>Type is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!--select academic year category-->
+      <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+        <div>
+          <span class="primary-heading-12">For Academic Year</span>
+        </div>
+
+        <div>
+          <mat-form-field
+            appearance="outline"
+            class="w-[95%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading gt-xs:w-[150%]"
+          >
+            <mat-label class="">Select Academic Year
+            </mat-label>
+            <mat-select
+              appearance="outline"
+              required
+              formControlName="selAcademicyear"
+            >
+              <mat-option
+                *ngFor="let dates of passAcademicYear"
+                [value]="dates"
+                (click)="SelectAcademicYear(dates)"
+              >
+                {{ dates.academic_year_start }}
+              </mat-option>
+            </mat-select>
+            <mat-error>Type is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!--select fee category-->
+      <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+        <div>
+          <span class="primary-heading-12">Discount Name:</span>
+        </div>
+        <div>
+          <mat-form-field
+            appearance="outline"
+            class="w-[95%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading gt-xs:w-[150%]"
+          >
+            <mat-label class="">Select Type</mat-label>
+            <mat-select
+              appearance="outline"
+              required
+              formControlName="selFeecategory"
+            >
+              <mat-option
+                *ngFor="let dates of passDiscountCategory"
+                [value]="dates"
+                (click)="SelectFeeCategory(dates)"
+              >
+                <div class="w-full flex">
+                  <div>
+                    <span class="normal-heading-12"
+                      >{{ dates.discount_category_name }}
+                    </span>
+                  </div>
+                </div>
+              </mat-option>
+            </mat-select>
+            <mat-error>Type is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!--input type-->
+      <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+        <div><span class="primary-heading-12">Discount Amount:</span></div>
+        <div>
+          <mat-form-field
+            appearance="outline"
+            class="w-[95%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading gt-xs:w-[100%]"
+          >
+            <mat-label class="">Discount Amount:</mat-label>
+            <input
+              class="para-bold"
+              matInput
+              formControlName="feeAmount"
+              id="name"
+              class="form-control"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <span class="red-heading-12">INR</span>
+        </div>
+      </div>
+
+      <!--Filter data by using fee category-->
+
+      <div>
+        <!--type 2 calander-->
+        <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+          <div>
+            <span class="primary-heading">Schedule DateTime:</span>
+          </div>
+
+          <div>
+            <mat-form-field
+              appearance="outline"
+              class="component--mat-form-field__custom-input w-full"
+            >
+              <input
+                matInput
+                [matDatepicker]="picker"
+                (dateChange)="addEvent('change', $event)"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!--Narration-->
+      <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+        <div><span class="primary-heading-12">Narration:</span></div>
+        <div>
+          <mat-form-field
+            appearance="outline"
+            class="w-[95%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading gt-xs:w-[100%]"
+          >
+            <input
+              class="para-bold"
+              matInput
+              formControlName="narration"
+              id="name"
+              class="form-control"
+              required
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!--button-->
+  <div class="w-full flex items-center justify-center mt-[15px]">
+    <button
+      style="cursor: pointer"
+      class="primary-button"
+      mat-raised-button
+      [disabled]="firstFormGroup.invalid"
+      (click)="insertScheduleNewFeeDiscountStudentWiseDiscount()"
+    >
+      Save
+    </button>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="font-small-in-size">Edit Bus Fee</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon (click)="onNoClick()">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<!--overall-->
+<div class="p-2">
+  <div class="text-justify">
+    <span class="normal-heading-12-bold">
+      Edit Bus Fee for Route Name / ID:
+    </span>
+    <span class="red-heading-12 ml-1"> Fee for </span>
+    <span class="normal-heading-12-bold ml-1"> Route Name / ID: </span>
+
+    <span class="normal-heading-12 ml-2">Kelamangalam Route</span>
+  </div>
+
+  <!--Date time span-->
+  <div class="text-justify">
+    <span class="normal-heading-12-bold">Effective from:</span>
+    <span class="red-heading-12 ml-1">15 JAN 2022, 5:00 PM</span>
+  </div>
+
+  <!--fees-->
+  <div class="w-full flex items-center justify-between pl-5 pr-5">
+    <div class="w-[50%]">
+      <span class="primary-heading-12">Stop Name</span>
+    </div>
+    <div class="w-[50%]">
+      <span class="primary-heading-12">Fee Amount</span>
+    </div>
+  </div>
+
+  <!--stops-->
+  <div class="mt-4 space-y-2">
+    <div
+      class="w-full flex items-center justify-between pl-5 pr-5"
+      *ngFor="let item of passForData"
+    >
+      <div class="w-[50%]">
+        <span class="normal-heading-12 whitespace-nowrap">{{
+          item.stop_name
+        }}</span>
+      </div>
+
+      <div class="w-[50%]">
+        <mat-form-field
+          appearance="outline"
+          class="w-[75%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading"
+        >
+          <input
+            matInput
+            (input)="handleInputChange($event, item)"
+            [value]="inputData[item.stop_id]"
+            type="number"
+          />
+        </mat-form-field>
+
+        <span class="red-heading-12 ml-2">INR</span>
+      </div>
+    </div>
+  </div>
+
+  <!--button save-->
+
+  <div class="w-full flex items-center justify-center" style="margin-top: 10px">
+    <button
+      style="cursor: pointer"
+      class="primary-button"
+      mat-raised-button
+      (click)="saveData()"
+    >
+      Save
+    </button>
+  </div>
+</div>

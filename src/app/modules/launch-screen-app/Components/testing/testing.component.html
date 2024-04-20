@@ -1,0 +1,88 @@
+<!-- <div class="page">
+  <mat-form-field>
+    <input
+      matInput
+      [ngxMatDatetimePicker]="picker"
+      placeholder="Choose a date"
+      [formControl]="dateControl"
+      [min]="minDate"
+      [max]="maxDate"
+      [disabled]="disabled"
+    />
+    <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker
+      #picker
+      [showSpinners]="showSpinners"
+      [showSeconds]="showSeconds"
+      [stepHour]="stepHour"
+      [stepMinute]="stepMinute"
+      [stepSecond]="stepSecond"
+      [touchUi]="touchUi"
+      [color]="color"
+      [enableMeridian]="enableMeridian"
+    >
+    </ngx-mat-datetime-picker>
+  </mat-form-field>
+</div> -->
+
+<!-- <mat-form-field>
+  <mat-chip-list #chipList aria-label="Choose a date" (click)="picker.open()">
+    <mat-chip
+      *ngFor="let value of model"
+      [selectable]="false"
+      [removable]="true"
+      (removed)="remove(value)"
+    >
+      {{ value | date }}
+      <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+    </mat-chip>
+    <input
+      [value]="resetModel"
+      matInput
+      [matDatepicker]="picker"
+      placeholder="Choose a date"
+      (dateChange)="dateChanged($event)"
+      [matChipInputFor]="chipList"
+      hidden
+    />
+  </mat-chip-list>
+  <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker
+    #picker
+    [startAt]="init"
+    [dateClass]="dateClass"
+  ></mat-datepicker>
+</mat-form-field> -->
+<!--overall-->
+<div class="w-full h-[500px] border-4 border-black space-y-2 p-2">
+  <!--top-->
+  <div class="h-[70px] border-4 border-black"></div>
+  <!--bottom-->
+  <div class="h-[400px] border-4 border-black p-2 space-y-2">
+    <!-- bottom top -->
+    <div class="h-[50px] border-4 border-black"></div>
+
+    <div class="w-full flex gap-2">
+      <!--overall bottom r-->
+      <div class="w-[20%] flex flex-col gap-2">
+        <!-- bottom right top -->
+        <div class="h-[120px] w-full border-4 border-black"></div>
+
+        <!-- bottom right bottom -->
+        <div class="h-[190px] w-full border-4 border-black"></div>
+      </div>
+
+      <!--overall bottom l-->
+      <div class="w-[80%] flex flex-col gap-2">
+        <!-- bottom left top -->
+        <div class="h-[180px] w-full border-4 border-black"></div>
+
+        <!-- bottom left bottom -->
+        <div class="w-full flex items-center gap-2">
+          <div class="h-[130px] w-[70%] border-4 border-black"></div>
+          <div class="h-[130px] w-[30%] border-4 border-black"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

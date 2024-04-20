@@ -1,0 +1,14 @@
+<ng-container *ngIf="!hidecontent">
+  <div class="component--mat-tab__custom-style">
+    <mat-tab-group>
+      <!--First Tab-->
+      <mat-tab label="Due Date Reminders">
+        <app-due-date-remainders></app-due-date-remainders>
+      </mat-tab>
+      <!--second Tab-->
+      <mat-tab label="Due Amount Reminders">
+        <app-due-amount-remainders></app-due-amount-remainders>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</ng-container>

@@ -1,0 +1,56 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="font-small-in-size">Discount Assign Edit</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon (click)="onNoClick()">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="p-2">
+  <!--simple text-->
+  <div>
+    <span class="normal-heading-12-bold"> Assign / Edit </span>
+    <span class="red-heading-12 ml-[3px]"> Discount Category - Type: </span>
+  </div>
+
+  <!--Content-->
+  <form [formGroup]="firstFormGroup">
+    <div class="space-y-2">
+      <!--input type-->
+      <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+        <div>
+          <span class="primary-heading-12">Discount Category Name:</span>
+        </div>
+        <div>
+          <mat-form-field
+            appearance="outline"
+            class="w-[95%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading gt-xs:w-[150%]"
+          >
+            <mat-label class="">Discount Category Name</mat-label>
+            <input
+              class="para-bold"
+              matInput
+              placeholder="Activity Group"
+              formControlName="firstCtrl"
+              id="name"
+              class="form-control"
+              required
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!--button-->
+  <div class="w-full flex items-center justify-center mt-[15px]">
+    <button
+      style="cursor: pointer"
+      class="primary-button"
+      mat-raised-button
+      [disabled]="btndisableNgdocheck"
+      (click)="FeeAssignEdit()"
+    >
+      Save
+    </button>
+  </div>
+</div>

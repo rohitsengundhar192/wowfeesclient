@@ -1,0 +1,47 @@
+.bgc {
+  background-color: #3366ff;
+}
+.mat-form-field-wrapper {
+  padding-bottom: -0.65625em;
+}
+@import "global";
+
+.component--dialog-box__custom-toolbar {
+  &.mat-toolbar {
+    height: 27px;
+    background-color: #3366ff;
+    padding: 0 0 0 12px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 550;
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.mat-dialog-content {
+  display: block;
+  margin: 0 0;
+  margin-top: 10px;
+  padding: 10px 10px;
+  max-height: 65vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/** No CSS for this example */
+::ng-deep mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-calendar-body-cell.selected > .mat-calendar-body-cell-content,
+::ng-deep
+  .mat-calendar-body-cell.selected:hover
+  > .mat-calendar-body-cell-content,
+::ng-deep
+  .mat-calendar-body-cell.selected
+  > .mat-calendar-body-cell-content:hover {
+  background-color: #673ab7 !important;
+  color: #fff !important;
+}

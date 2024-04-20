@@ -1,0 +1,22 @@
+p {
+  font-family: Lato;
+}
+.test {
+  font-family: Lato;
+}
+.container {
+  display: grid;
+}
+.item {
+  width: 100%;
+}
+.item-margin {
+  height: 50vh;
+  border-bottom: 1px solid salmon;
+}
+.piechart {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  // background-image: conic-gradient(pink 70deg, rgb(79, 142, 123) 0 235deg);
+}

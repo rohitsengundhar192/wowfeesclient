@@ -1,0 +1,383 @@
+<div class="ml-2 space-y-2">
+  <!--Simple text-->
+  <div>
+    <span class="primary-heading-12">
+      Please select from the following Student user category in order to
+      schedule common fees:
+    </span>
+  </div>
+
+  <!--Category-->
+  <div>
+    <app-list-category></app-list-category>
+  </div>
+
+  <!-- <hr class="h-[20px]"> -->
+
+  <!--simple text after category-->
+
+  <div class="text-justify">
+    <span class="normal-heading-12-bold"> List of </span>
+    <span class="red-heading-12"> Common Fees </span>
+    <span class="normal-heading-12-bold">
+      Scheduled for above selected Student User Categories:
+    </span>
+  </div>
+
+  <!--Buttons-->
+  <div class="grid grid-cols-2 gap-4 gt-sm:flex items-center gt-sm:space-x-0">
+    <button
+      class="primary-button"
+      mat-raised-button
+      [disabled]="btnScheduleNew"
+      (click)="scheduleNewDialogue()"
+    >
+      Schedule New
+    </button>
+
+    <button
+      class="primary-button"
+      mat-raised-button
+      [disabled]="btnScheduleEdit"
+      (click)="scheduleEditDialogue()"
+    >
+      <span> Edit </span>
+    </button>
+
+    <button
+      class="primary-button"
+      mat-raised-button
+      [disabled]="btnScheduleEdit"
+      (click)="deleteParticipants()"
+    >
+      <span> Delete</span>
+    </button>
+
+    <span class="primary-heading-14"> Common Fee Type </span>
+  </div>
+
+  <!--Table-->
+  <div>
+    <div>
+      <div class="mat-elevation-z8 mt-2 table-responsive w-fit">
+        <div id="pdfTable1">
+          <table
+            id="excel_table"
+            matSort
+            mat-table
+            #table
+            [dataSource]="dataSource"
+            style="margin-left: auto; margin-right: auto"
+            class="component--mat-table__custom-table checklist-table table-bordered table-sm block"
+          >
+            <!-- Checkbox Column -->
+
+            <ng-container
+              matColumnDef="col1"
+              style="border-right: 1px solid #9a9a9a"
+            >
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  width: 175px;
+                  max-width: 200px;
+                  word-wrap: break-word;
+                  white-space: nowrap;
+                  padding-left: 8px;
+                  padding-right: 8px;
+                  vertical-align: middle;
+                  text-align: center;
+                  border-right: 1px solid #9a9a9a;
+                "
+              >
+                <span> Scheduled Billing Date </span>
+                <span class="red-heading-12 ml-[3px]"> * </span>
+              </th>
+              <td
+                style="
+                  border-right: 1px solid #9a9a9a;
+                  text-align: left;
+                  padding-left: 10px;
+                "
+                mat-cell
+                *matCellDef="let element; let row"
+              >
+                <div>
+                  <mat-radio-button
+                    [value]="element.user_id"
+                    (click)="radioBtnData(element)"
+                  >
+                    <div style="display: flex; justify-items: center">
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: column;
+                          justify-content: start;
+                          cursor: pointer;
+                        "
+                      >
+                        <span class="normal-heading-12">
+                          {{
+                            element.scheduled_billing_date
+                              | date : "dd MMM y, h:mm a"
+                          }}</span
+                        >
+                      </div>
+                    </div>
+                  </mat-radio-button>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="col2">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  width: 150px;
+                  max-width: 200px;
+                  word-wrap: break-word;
+                  white-space: nowrap;
+                  padding-left: 8px;
+                  padding-right: 8px;
+                  vertical-align: middle;
+                  text-align: center;
+                "
+              >
+                Payment Due <br />
+                DateTime
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let element"
+                style="text-align: left; padding-left: 10px"
+              >
+                <span class="normal-heading-12">
+                  {{ element.Payment_Due_DateTime | date : "dd MMM y, h:mm a" }}
+                </span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="col3">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  width: 150px;
+                  max-width: 200px;
+                  word-wrap: break-word;
+                  white-space: nowrap;
+                  padding-left: 8px;
+                  padding-right: 8px;
+                  vertical-align: middle;
+                  text-align: center;
+                "
+              >
+                Fee Category
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let element"
+                style="text-align: left; padding-left: 10px"
+              >
+                <div *ngIf="element.fee_category_id == 0">
+                  <span class="normal-heading-12">
+                    Common Fee, Recurring Fee Payment
+                  </span>
+                </div>
+                <div *ngIf="element.fee_category_id == 1">
+                  <span class="normal-heading-12">
+                    Common Fee, One Time Fee Payment
+                  </span>
+                </div>
+
+                <div *ngIf="element.fee_category_id == 2">
+                  <span class="normal-heading-12">
+                    Common Fee, Bus Fee Payment
+                  </span>
+                </div>
+                <div *ngIf="element.fee_category_id == 3">
+                  <span class="normal-heading-12">
+                    Custom Fee / Penality Payment</span
+                  >
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="col4">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  width: 150px;
+                  max-width: 200px;
+                  word-wrap: break-word;
+                  white-space: nowrap;
+                  padding-left: 8px;
+                  padding-right: 8px;
+                  vertical-align: middle;
+                  text-align: center;
+                "
+              >
+                Fee Amount
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let element"
+                style="text-align: left; padding-left: 10px"
+              >
+                <span class="normal-heading-12">
+                  {{ element.fee_amount }}
+                </span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="col5">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  width: 150px;
+                  max-width: 200px;
+                  word-wrap: break-word;
+                  white-space: nowrap;
+                  padding-left: 8px;
+                  padding-right: 8px;
+                  vertical-align: middle;
+                  text-align: center;
+                "
+              >
+                For Student <br />
+                User Category
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let element"
+                style="text-align: left; padding-left: 10px"
+              >
+                <span class="normal-heading-12">
+                  {{ element.c_name }}
+                </span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="col6">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  width: 150px;
+                  max-width: 200px;
+                  word-wrap: break-word;
+                  white-space: nowrap;
+                  padding-left: 8px;
+                  padding-right: 8px;
+                  vertical-align: middle;
+                  text-align: center;
+                "
+              >
+                For Academic <br />
+                Year
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let element"
+                style="text-align: left; padding-left: 10px"
+              >
+                <span class="normal-heading-12">
+                  {{ element.academic_year }}
+                </span>
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumns; sticky: true"
+              style="text-align: center"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns"
+              (click)="selection.toggle(row); onRowClicked(row)"
+              (mouseover)="row.hovered = true"
+              (mouseout)="row.hovered = false"
+            ></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="6">
+                No data matching the filter
+                <!-- "{{ input.value }}" -->
+              </td>
+            </tr>
+          </table>
+        </div>
+        <mat-paginator
+          class="component--mat-pagination__size"
+          #paginator
+          #paginatorElement
+          [length]="dataSource.data.length"
+          [pageIndex]="0"
+          [pageSizeOptions]="[5, 10, 20]"
+          [pageSize]="5"
+          [allValue]="dataSource.data.length"
+          appAddAllToPaginator
+          (page)="pageChanged($event)"
+        >
+        </mat-paginator>
+        <span class="red-heading-12 ml-[5px]"> * </span
+        ><span class="normal-heading-12-bold">
+          Please select All in order to use filter
+        </span>
+        <div class="flex bg-white-black" id="export_btn">
+          <div class="custom-mat-floating-label">
+            <mat-form-field
+              appearance="outline"
+              class="component--mat-form-field__custom-input pl-2"
+            >
+              <input
+                placeholder="Filter"
+                [disabled]="
+                  dataSource.data.length === 0 ||
+                  !(pageSize !== 5 && pageSize !== 10 && pageSize !== 20)
+                "
+                matInput
+                (keyup)="applyFilter($event)"
+                #input
+              />
+            </mat-form-field>
+          </div>
+          <div class="w-full flex justify-end">
+            <span class="p-5 export-btn" [matMenuTriggerFor]="menu"
+              >Export</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mat Menu -->
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="downloadAsPDF11()">
+        <mat-icon>picture_as_pdf</mat-icon>
+        <span>Print / Export PDF</span>
+      </button>
+      <button mat-menu-item (click)="exportReport('sample.xlsx')">
+        <mat-icon>grid_on</mat-icon>
+        <span>Export SpreadSheet</span>
+      </button>
+      <button mat-menu-item (click)="exportReport('sample.csv')">
+        <mat-icon>grid_on</mat-icon>
+        <span>Export csv File</span>
+      </button>
+      <button mat-menu-item (click)="exportReport('sample.json')">
+        <mat-icon>grid_on</mat-icon>
+        <span>Export json</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <!--End text-->
+  <div>
+    <span class="red-heading-12">*</span>
+    <span class="secondary-heading-12 ml-1"
+      >Cannot Edit / Delete Past Scheduled Data</span
+    >
+  </div>
+</div>

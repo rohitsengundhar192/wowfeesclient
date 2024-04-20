@@ -1,0 +1,94 @@
+<!--overall-->
+<div class="space-y-2">
+  <!--year-->
+  <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+    <div>
+      <span class="primary-heading-12"
+        >Receipt and Pending Payment Details for:</span
+      >
+    </div>
+
+    <!--Academic year mat slect-->
+
+    <div>
+      <mat-form-field
+        appearance="outline"
+        class="w-[95%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading gt-xs:w-[150%]"
+      >
+        <mat-label class="">Select Type</mat-label>
+        <mat-select appearance="outline" required>
+          <mat-option
+            *ngFor="let dates of passAcademicYear"
+            [value]="dates"
+            (click)="SelectAcademicYear(dates)"
+          >
+            {{ dates.academic_year_start }}
+          </mat-option>
+        </mat-select>
+        <mat-error>Type is required</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!--Date time-->
+  <div class="w-full flex items-center gap-2">
+    <span class="primary-heading-12">As of Tally Sync Date Time:</span>
+    <span class="red-heading-12">21 Jul 2023, 05:00 PM</span>
+  </div>
+
+  <!--pie chart-->
+  <div>
+    <div
+      class="piechart"
+      [style.backgroundImage]="generatePieChartBackground()"
+    ></div>
+  </div>
+
+  <!--description-->
+  <div class="space-y-2">
+    <div class="w-full flex items-center gap-2">
+      <div>
+        <div
+          style="
+            background-color: #bf8672;
+            height: 30px;
+            width: 30px;
+            border-radius: 7px;
+          "
+        ></div>
+      </div>
+      <div class="text-justify">
+        <span class="normal-heading-12">Pending Payment - </span>
+        <span class="red-heading-12 ml-1">40000.00</span>
+        <span class="normal-heading-12 ml-1">INR</span>
+      </div>
+    </div>
+    <div class="w-full flex items-center gap-2">
+      <div>
+        <div
+          style="
+            background-color: #4f8e7b;
+            height: 30px;
+            width: 30px;
+            border-radius: 7px;
+          "
+        ></div>
+      </div>
+      <div class="text-justify">
+        <span class="normal-heading-12">Receipt - </span>
+        <span class="red-heading-12 ml-1">40000.00</span>
+        <span class="normal-heading-12 ml-1">INR</span>
+      </div>
+    </div>
+    <div class="w-full flex items-center gap-2">
+      <div>
+        <div style="height: 30px; width: 30px; border-radius: 7px"></div>
+      </div>
+      <div class="text-justify">
+        <span class="normal-heading-12">Total - </span>
+        <span class="red-heading-12 ml-1">100000.00 </span>
+        <span class="normal-heading-12 ml-1">INR</span>
+      </div>
+    </div>
+  </div>
+</div>

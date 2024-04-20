@@ -1,0 +1,82 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="font-small-in-size">Fee Assign New</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon (click)="onNoClick()">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="p-2">
+  <!--simple text-->
+  <div>
+    <span class="normal-heading-12-bold"> Assign / Edit </span>
+    <span class="red-heading-12 ml-[3px]"> Fee Category - Type: </span>
+  </div>
+
+  <!--Content-->
+
+  <div class="space-y-2 mt-[15px]">
+    <!--input type-->
+    <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+      <div><span class="primary-heading-12">Fee Category Name</span></div>
+      <div>
+        <form [formGroup]="firstFormGroup">
+          <mat-form-field
+            appearance="outline"
+            class="w-[95%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading gt-xs:w-[150%]"
+          >
+            <mat-label class="">Fee Category Name</mat-label>
+            <input
+              class="para-bold"
+              matInput
+              formControlName="firstCtrl"
+              [(ngModel)]="groupname"
+              id="name"
+              class="form-control"
+              required
+            />
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <!--select-->
+    <div class="w-full space-y-2 gt-xs:flex gt-xs:items-center gt-xs:gap-2">
+      <div>
+        <span class="primary-heading-12">Type</span>
+      </div>
+
+      <div class="gt-xs:ml-[81px]">
+        <mat-form-field
+          appearance="outline"
+          class="w-[95%] xs:w-full component--mat-form-field__custom-input component--mat-country_input__custom-style normal-text-heading gt-xs:w-[150%]"
+        >
+          <mat-label class="">Select Type</mat-label>
+          <mat-select appearance="outline" required>
+            <mat-option
+              *ngFor="let dates of foods"
+              [value]="dates"
+              (click)="SelectFeeCategory(dates)"
+            >
+              {{ dates.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error>Type is required</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <!--button-->
+  <div class="w-full flex items-center justify-center mt-[15px]">
+    <button
+      style="cursor: pointer"
+      class="primary-button"
+      mat-raised-button
+      [disabled]="btndisable || btndisableinput"
+      (click)="InsertFeeAssign()"
+    >
+      Save
+    </button>
+  </div>
+</div>

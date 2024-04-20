@@ -1,0 +1,26 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="font-small-in-size">Schedule / Edit</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon (click)="onNoClick()">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div>
+  <!--radio btn-->
+  <div class="w-full flex items-center justify-center h-[30vh]">
+    <mat-radio-group
+      [(ngModel)]="radioOptions"
+      name="radioButtons"
+      (change)="onRadioButtonChange($event)"
+      style="display: flex; flex-direction: column"
+    >
+      <mat-radio-button value="1"
+        ><span class="normal-heading-12">Custom Fee</span>
+      </mat-radio-button>
+      <mat-radio-button value="2"
+        ><span class="normal-heading-12">Discount</span></mat-radio-button
+      >
+    </mat-radio-group>
+  </div>
+</div>

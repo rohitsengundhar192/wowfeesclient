@@ -1,0 +1,38 @@
+.hrtag {
+  height: 7px;
+  background-color: #9a9a9a;
+}
+
+.bor {
+  border: 2px solid #9a9a9a;
+  border-radius: 5px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+// .school-name {
+//   flex: 1;
+// }
+
+.image-container {
+  flex-shrink: 0; /* Prevents the image from shrinking */
+}
+
+/* Additional styling */
+.image-container img {
+  width: 136px;
+  height: 142px;
+}
+//file upload
+.image-container-data {
+  // position: relative;
+  display: inline-block;
+}
+
+.image-container img {
+  display: block;
+  max-width: 100%;
+}

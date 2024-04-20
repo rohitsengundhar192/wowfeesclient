@@ -1,0 +1,245 @@
+<hr class="hrtag" />
+
+<div class="w-full gt-xs:flex gt-xs:items-center gt-xs: gap-5">
+  <div class="flex items-center gap-3 lt-xs:justify-center">
+    <!-- For Background color -->
+    <div class="flex flex-col w-[100px] items-center">
+      <div class="">
+        <span class="normal-heading-12 whitespace-nowrap"
+          >Background Color</span
+        >
+      </div>
+      <div class="border-solid border-2 border-black">
+        <input
+          [(colorPicker)]="color"
+          (colorPickerChange)="cardbgcolor($event)"
+          class="h-[50px] w-[50px]"
+          [style.background]="color"
+        />
+      </div>
+    </div>
+
+    <!-- Text color 1 -->
+    <div class="flex flex-col items-center w-[100px]">
+      <div class="">
+        <span class="normal-heading-12 whitespace-nowrap"
+          >Choose Text Color 1
+        </span>
+      </div>
+      <div class="border-solid border-2 border-black">
+        <input
+          [(colorPicker)]="color1"
+          (colorPickerChange)="cardtext1clr($event)"
+          class="h-[50px] w-[50px]"
+          [style.background]="color1"
+        />
+      </div>
+    </div>
+    <!-- Text color 2 -->
+    <div class="flex flex-col items-center w-[100px]">
+      <div class="">
+        <span class="normal-heading-12 whitespace-nowrap"
+          >Choose Text Color 2
+        </span>
+      </div>
+      <div class="border-solid border-2 border-black">
+        <input
+          [(colorPicker)]="color2"
+          (colorPickerChange)="cardtext2clr($event)"
+          class="h-[50px] w-[50px]"
+          [style.background]="color2"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!--Two buttons-->
+  <div class="flex flex-col items-center gap-2 mt-[13px]">
+    <!--upload logo image-->
+    <div
+      class="bor w-full flex items-center gap-2 gt-xs:w-[155px] cursor-pointer image-container-data"
+    >
+      <label for="file-upload" class="flex items-center ml-[5px]">
+        <span class="primary-heading-12">Upload Logo / Image</span>
+        <div class="mr-[5px] ml-[5px]">
+          <img src="../../../../../assets/images/upload 1.png" alt="" />
+        </div>
+      </label>
+      <input
+        id="file-upload"
+        type="file"
+        (change)="browseVideo($event)"
+        (change)="onFileSelected($event)"
+        #videoUpload
+        accept="image/*"
+        style="display: none; cursor: pointer"
+      />
+    </div>
+
+    <!--upload logo image-->
+    <div class="bor w-full gt-xs:w-[175px]">
+      <span class="primary-heading-12 ml-[5px] mr-[5px]">
+        Link from your Cloud Storage</span
+      >
+    </div>
+  </div>
+
+  <!--simple text-->
+  <div>
+    <span class="secondary-heading-12">
+      It would be better if you remove the background of the logo/image via the
+      website:
+    </span>
+
+    <span class="primary-heading-12"> www.remove.bg </span>
+    <span class="secondary-heading-12">
+      so as to make it transparent before uploading the same here.
+    </span>
+  </div>
+</div>
+<hr class="hrtag mt-[10px]" />
+
+<!--printer options-->
+
+<div class="w-full flex items-center justify-center gap-2 mt-2">
+  <!-- text -->
+  <div>
+    <span class="secondary-heading-12 whitespace-nowrap">
+      Preview - With Sample Data
+    </span>
+  </div>
+
+  <div class="w-full flex items-center justify-center gap-2">
+    <div>
+      <img
+        src="../../../../../assets/images/download.png"
+        alt="download_image"
+        style="width: 20px; height: 20px; cursor: pointer"
+        (click)="downloadAsImage()"
+      />
+    </div>
+    <div>
+      <img
+        src="../../../../../assets/images/printing.png"
+        alt="print_image"
+        style="width: 20px; height: 20px; cursor: pointer"
+        (click)="downloadAsPDF11()"
+      />
+    </div>
+  </div>
+</div>
+<br />
+<!-- Div whose background color will change -->
+
+<div #downloadableContent [style.background]="color" class="container">
+  <!-- Add template reference variable -->
+  <div class="school-name flex flex-col items-center float-left">
+    <span
+      [style.color]="color1"
+      style="
+        font-family: Inter;
+        margin-left: 5px;
+        text-shadow: 0 0 3px #000000;
+        font-size: 25px;
+      "
+      >School Name</span
+    >
+
+    <span
+      [style.color]="color2"
+      style="
+        font-family: Inter;
+        margin-left: 5px;
+        text-shadow: 0 0 1px #000000;
+        font-size: 15px;
+      "
+    >
+      School Address
+    </span>
+  </div>
+
+  <div class="image-container">
+    <div *ngIf="!notallowed">
+      <img
+        src="../../../../../assets/images/image 356.png"
+        alt=""
+        style="margin-right: 5px"
+      />
+    </div>
+
+    <div
+      *ngIf="lastImageUrl && notallowed"
+      class="w-full flex justify-center items-center"
+    >
+      <img
+        [src]="lastImageUrl"
+        alt="Uploaded image"
+        class="shadow-box"
+        style="max-width: 98%; max-height: 250px; margin-right: 5px"
+      />
+    </div>
+  </div>
+</div>
+
+<!--After all designing portion completed-->
+<div class="w-full flex flex-col items-center justify-center mt-2">
+  <span style="font-weight: 700; font-size: x-large; color: rgb(51, 102, 255)"
+    >Fee Payment Receipt</span
+  >
+  <span class="red-heading-12"> From: 01 Jun 2023 to 01 Dec 2023 </span>
+</div>
+<hr class="hrtag" />
+<!-- Name of Student : -->
+<div>
+  <span class="secondary-heading-12">Name of Student :</span>
+</div>
+<div class="w-full flex items-center gap-4">
+  <span style="font-weight: 700; font-size: larger">Shymlal Singh</span>
+  <span class="secondary-heading-12">Student / Class 1 / Section A</span>
+</div>
+<hr class="hrtag mt-2" />
+
+<!--tables-->
+<div
+  class="w-full gt-xs:flex gt-xs:items-center gt-xs: gap-5 gt-xs: justify-center"
+>
+  <div>
+    <app-payment-receipt-particulars-table></app-payment-receipt-particulars-table>
+  </div>
+
+  <div>
+    <app-fee-particulars-table></app-fee-particulars-table>
+  </div>
+</div>
+<hr class="hrtag mt-2" />
+
+<div class="w-full flex flex-col items-center justify-center">
+  <span class="normal-heading-12-bold mt-2"
+    >Received a sum of INR Six Thousand Only towards above fee particulars of
+    non refundable nature during
+  </span>
+
+  <span class="normal-heading-12-bold">
+    the period: 01 Jun 2023 to 01 Dec 2023, in respect to Shyamlal Singh
+    (Student’s Name).
+  </span>
+</div>
+<hr class="hrtag mt-2" />
+
+<div class="w-full flex items-center justify-center mt-2">
+  <span class="secondary-heading-12"
+    >This digitally generated Receipt does not require signature.</span
+  >
+</div>
+
+<!--button-->
+<div class="w-full flex items-center mt-[15px]">
+  <button
+    style="cursor: pointer"
+    class="primary-button"
+    mat-raised-button
+    (click)="onUploadFileCephStorage()"
+  >
+    SAVE
+  </button>
+</div>

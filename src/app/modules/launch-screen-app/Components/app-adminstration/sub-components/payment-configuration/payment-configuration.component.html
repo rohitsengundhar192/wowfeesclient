@@ -1,0 +1,30 @@
+<div class="space-y-2">
+  <!--txt-->
+  <div class="text-justify">
+    <span class="primary-heading-12"
+      >QR Code of your UPI Payment Collection Bank Account Authorized by your
+      Educational Institution:</span
+    >
+  </div>
+  <!--button-->
+  <div class="w-full flex items-center mt-[15px]">
+    <button
+      style="cursor: pointer"
+      class="primary-button"
+      mat-raised-button
+      (click)="scanNew()"
+    >
+      SCAN NEW
+    </button>
+  </div>
+
+  <!--Qr code-->
+  <div>
+    <qrcode
+      (qrCodeURL)="onChangeURL($event)"
+      [qrdata]="myAngularxQrCode"
+      [width]="256"
+      [errorCorrectionLevel]="'M'"
+    ></qrcode>
+  </div>
+</div>
